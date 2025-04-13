@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexora</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Add padding to the top to prevent content from hiding behind navbar */
+        body {
+            padding-top: 4rem; /* Adjust this value if needed to match navbar height */
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-50">
+
+    <!-- Navigation Bar -->
+    <nav class="w-full mb-10 fixed top-0 left-0 z-50 bg-gray-300">
+        <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/shop"><h3 class="text-2xl font-bold text-gray-800">Nexora</h3></a>
+
+            <!-- Menu Items (Initially Hidden on Mobile) -->
+            <div class="flex gap-8 text-lg font-semibold hidden lg:flex menu-items">
+                <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors duration-300">Shop</a>
+                <a href="/cart" class="text-gray-700 hover:text-blue-600 transition-colors duration-300">Cart</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600 transition-colors duration-300">Account</a>
+                <a href="/users/logout" class="text-red-500 hover:text-red-700 transition-colors duration-300">Logout</a>
+                <a href="/owners/admin">Admin</a>
+            </div>
+
+            <!-- Mobile Menu Button (optional) -->
+            <button class="lg:hidden text-gray-700 focus:outline-none" id="mobileMenuButton">
+                <i class="ri-menu-2-line text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="lg:hidden hidden px-5 pb-4">
+        <a href="/shop" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Shop</a>
+        <a href="/cart" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Cart</a>
+        <a href="#" class="block py-2 text-lg text-gray-700 hover:text-blue-600">Account</a>
+        <a href="/users/logout" class="block py-2 text-lg text-red-500 hover:text-red-700">Logout</a>
+    </div>
+
+
+    <script>
+        // Toggle mobile menu visibility (Dropdown effect)
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+
+</html>

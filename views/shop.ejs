@@ -1,0 +1,96 @@
+<%- include('./partials/header') %>
+<% if (success && success.length > 0) { %>
+  <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4 shadow-md">
+    <%= success[0] %>
+  </div>
+<% } %>
+<div class="min-h-screen bg-gray-100 px-5 py-8 lg:px-10 lg:py-12">
+  <div class="flex flex-col lg:flex-row gap-10">
+
+    <!-- Sidebar -->
+    <aside class="lg:w-1/4 bg-white rounded-2xl shadow p-6 mb-10 lg:mb-0">
+      <h3 class="text-xl font-semibold mb-4">Sort By</h3>
+      <form action="/shop" method="GET" class="mb-10">
+        <select class="border rounded px-3 py-2 w-full text-sm" name="sortby">
+          <option value="popular">Popular</option>
+          <option value="newest">Newest</option>
+        </select>
+      </form>
+
+      <div class="mb-10">
+        <h3 class="text-xl font-semibold mb-4">Categories</h3>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><a href="#" class="hover:text-blue-600">New Collection</a></li>
+          <li><a href="#" class="hover:text-blue-600">All Products</a></li>
+          <li><a href="#" class="hover:text-blue-600">Discounted Products</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Filter By</h3>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><a href="#" class="hover:text-blue-600">Availability</a></li>
+          <li><a href="#" class="hover:text-blue-600">Discount</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Products Grid -->
+    <main class="lg:w-3/4">
+      <h2 class="text-3xl font-bold mb-8 text-gray-800">Explore Our Collection</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <% products.forEach(function(product) { %>
+          <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-200">
+
+            <!-- Image Container -->
+            <div class="relative w-full aspect-[4/3] bg-gray-100">
+              <% if (product.image) { %>
+                <img src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" 
+                     alt="Product Image" 
+                     class="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105" />
+              <% } else { %>
+                <div class="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                  No Image
+                </div>
+              <% } %>
+
+              <% if (product.discount && parseFloat(product.discount) > 0) { %>
+                <div class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                  ₹<%= product.discount %> OFF
+                </div>
+              <% } %>
+            </div>
+
+            <!-- Product Info -->
+            <div class="p-4 flex flex-col gap-2">
+              <h3 class="text-base font-semibold text-gray-800 truncate"><%= product.name %></h3>
+
+              <div class="flex items-center gap-2">
+                <% if (product.discount && parseFloat(product.discount) > 0) { 
+                     const discountedPrice = (parseFloat(product.price) - parseFloat(product.discount)).toFixed(0); 
+                %>
+                  <span class="text-lg font-bold text-blue-600">₹<%= discountedPrice %></span>
+                  <span class="line-through text-sm text-gray-400">₹<%= product.price %></span>
+                <% } else { %>
+                  <span class="text-lg font-bold text-blue-600">₹<%= product.price %></span>
+                <% } %>
+              </div>
+
+              <div class="mt-2">
+                <a href="/addtocart/<%= product._id %>"
+                   class="block text-center w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                  Add to Cart
+                </a>
+              </div>
+            </div>
+
+          </div>
+        <% }) %>
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

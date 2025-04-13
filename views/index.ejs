@@ -1,0 +1,93 @@
+<%- include('./partials/header') %>
+
+<% if (typeof error !== 'undefined' && error.length > 0) { %>
+  <div class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg bg-red-500 text-white shadow-lg text-center text-sm font-medium animate-pulse">
+    <%= error %>
+  </div>
+<% } %>
+
+<div class="min-h-screen bg-gradient-to-br from-[#f0f4ff] via-[#e0eaff] to-[#f5f0ff] flex items-center justify-center px-6 py-20 font-sans">
+  <div class="w-full max-w-5xl bg-zinc-500 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-gray-200">
+
+
+    <!-- Left: Register -->
+    <div class="bg-white p-10 md:p-14 flex flex-col justify-center">
+      <h2 class="text-4xl font-bold text-gray-900 mb-2">Get started with <span class="text-indigo-600">Nexora</span></h2>
+      <p class="text-gray-500 text-base mb-8">Create your account to unlock a smarter workflow.</p>
+
+      <form action="/users/register" method="post" class="space-y-5">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+          <input type="text" name="fullname" class="input-modern" placeholder="John Doe" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+          <input type="email" name="email" class="input-modern" placeholder="you@nexora.com" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+          <input type="password" name="password" class="input-modern" placeholder="••••••••" />
+        </div>
+        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+          Create Account
+        </button>
+        
+      </form>
+    </div>
+
+    <!-- Right: Login -->
+    <div class="bg-gradient-to-br from-indigo-600 to-purple-600 text-white p-10 md:p-14 flex flex-col justify-center">
+      <h2 class="text-3xl font-semibold mb-2">Welcome Back</h2>
+      <p class="text-indigo-100 mb-8">Already have a Nexora account? Log in below.</p>
+
+      <form action="/users/login" method="post" class="space-y-5">
+        <div>
+          <label class="block text-sm font-medium text-black-500 mb-1">Email Address</label>
+          <input type="email" name="email" class="input-glass text-blue-600 rounded-lg" placeholder="   you@nexora.com" />
+
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-black-500 mb-1">Password</label>
+          <input type="password" name="password" class="input-glass text-blue-600 rounded-lg" placeholder="••••••••" />
+
+        </div>
+        <button type="submit" class="ml-6 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out">
+          Login
+        </button>
+        
+
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<%- include('./partials/footer') %>
+
+<!-- Tailwind Custom Styling -->
+<style>
+  .input-modern {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-800 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200;
+  }
+/* 
+  .input-glass {
+    @apply w-full px-4 py-3 rounded-xl border border-white/30 bg-white/20 text-gray-900 placeholder-white/60 text-sm backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-white transition duration-200;
+  } */
+
+  .btn-solid {
+    @apply bg-indigo-600 text-white font-medium text-sm py-3 px-6 rounded-lg
+      hover:bg-indigo-700 active:bg-indigo-800 shadow-md transition-all duration-300;
+  }
+
+  .btn-outline {
+    @apply border border-white text-white font-medium text-sm py-3 px-6 rounded-lg
+      hover:bg-white hover:text-indigo-700 shadow-md transition-all duration-300;
+  }
+
+  .btn-solid:hover,
+  .btn-outline:hover {
+    cursor: pointer;
+  }
+  
+ 
+</style>
